@@ -1,6 +1,7 @@
 import cv2
 from pyspectra.core import core
 from pyspectra.analysis import analysis
+from pyspectra.exception import pyspectra_exception
 
 def main():
     while True:
@@ -17,6 +18,8 @@ def main():
                 cover = cv2.imread("./assets/" + image_name, 0)
                 new_image = pyspectra.embedding(image=cover, message=message, key=key, scalar=scalar)
                 cv2.imwrite("./outputs/" + output_name, new_image)
+            except pyspectra_exception.PySpectraException as pe:
+                print("PySpectra Exception:", pe)
             except Exception as e:
                 print("Error:", e)
                 continue
@@ -30,6 +33,8 @@ def main():
                 stego = cv2.imread("./outputs/" + stego_name, 0)
                 extracted_message = pyspectra.extract(image=stego, key=key)
                 print("pesan:", extracted_message)
+            except pyspectra_exception.PySpectraException as pe:
+                print("PySpectra Exception:", pe)
             except Exception as e:
                 print("Error:", e)
                 continue
@@ -53,6 +58,8 @@ def main():
 
                 print("PSNR:", psnr)
                 print("SSIM:", ssim)
+            except pyspectra_exception.PySpectraException as pe:
+                print("PySpectra Exception:", pe)
             except Exception as e:
                 print("Error:", e)
                 continue
