@@ -5,7 +5,7 @@ class PySpectra(object):
     def __init__(self):
         pass
 
-    def _lsbEmbed(self, image=np.array([]), message="") -> np.array([]):
+    def _lsbEmbed(self, image=np.array([]), message="") -> np.ndarray:
         """
         Embeds a message into the least significant bit of each pixel in a grayscale image.
         
@@ -44,7 +44,7 @@ class PySpectra(object):
         return stego_image
 
 
-    def _getLSB(self, image=np.array([])) -> np.array([]):
+    def _getLSB(self, image=np.array([])) -> str:
         """
         Retrieves the least significant bit of each pixel in an image.
         
@@ -127,7 +127,7 @@ class PySpectra(object):
         return original_message
     
 
-    def _generateSeed(self, key="") -> str:
+    def _generateSeed(self, key="") -> int:
         """
         Generates a seed for pseudo-random number generation based on the key.
         
@@ -333,7 +333,7 @@ class PySpectra(object):
         return text
     
 
-    def _getPattern(self, lsbData=""):
+    def _getPattern(self, lsbData="") -> tuple[str, str, str]:
         """
         Extracts specific patterns from LSB data.
         
@@ -358,7 +358,7 @@ class PySpectra(object):
 
     
 
-    def embedding(self, image=np.array([]), message="", key="", scalar=2) -> np.array([]):
+    def embedding(self, image=np.array([]), message="", key="", scalar=2) -> np.ndarray:
         """
         Embeds a message into an image using Spread Spectrum and LSB techniques.
         
@@ -396,7 +396,7 @@ class PySpectra(object):
 
         return embedded_image
     
-    def extract(self, image=np.array([]), key=""):
+    def extract(self, image=np.array([]), key="") -> str:
         """
         Extracts a message from an image using Spread Spectrum and LSB extraction methods.
         

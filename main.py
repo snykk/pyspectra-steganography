@@ -7,11 +7,11 @@ def main():
     while True:
         mode = input("embed/extract/analyze? ")
         if mode == "embed":
-            image_name = input("Masukkan nama gambar: ")
-            key = input("Masukkan kunci: ")
-            scalar = int(input("Masukkan nilai scalar: "))
-            message = input("Masukkan pesan: ")
-            output_name = input("Masukkan nama gambar output: ")
+            image_name = input("Enter cover image: ")
+            key = input("Enter the key: ")
+            scalar = int(input("Enter scalar value [0-255]: "))
+            message = input("Enter the message: ")
+            output_name = input("Enter the name of output image: ")
 
             pyspectra = core.PySpectra()
             try:
@@ -22,27 +22,25 @@ def main():
                 print("PySpectra Exception:", pe)
             except Exception as e:
                 print("Error:", e)
-                continue
 
         elif mode == "extract":
-            stego_name = input("Masukkan nama stego: ")
-            key = input("Masukkan kunci: ")
+            stego_name = input("Enter stego name: ")
+            key = input("Enter the key: ")
 
             pyspectra = core.PySpectra()
             try:
                 stego = cv2.imread("./outputs/" + stego_name, 0)
                 extracted_message = pyspectra.extract(image=stego, key=key)
-                print("pesan:", extracted_message)
+                print("Message:", extracted_message)
             except pyspectra_exception.PySpectraException as pe:
                 print("PySpectra Exception:", pe)
             except Exception as e:
                 print("Error:", e)
-                continue
 
         elif mode == "analyze":
             try:
-                image1_path = "./assets/" + input("Masukkan path image 1: ")
-                image2_path = "./outputs/" + input("Masukkan path image 2: ")
+                image1_path = "./assets/" + input("Enter cover image: ")
+                image2_path = "./outputs/" + input("Enter stego image: ")
 
                 image1 = cv2.imread(image1_path, 0)
                 image2 = cv2.imread(image2_path, 0)
@@ -62,10 +60,8 @@ def main():
                 print("PySpectra Exception:", pe)
             except Exception as e:
                 print("Error:", e)
-                continue
         else:
             print("Invalid mode. Please enter 'embed', 'extract', or 'analyze'.")
-            continue
 
 if __name__ == "__main__":
     main()
