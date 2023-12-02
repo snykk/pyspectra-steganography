@@ -50,8 +50,9 @@ This project is licensed under the MIT License. See the [LICENSE](https://github
 
 ## Result
 
-| Cover | Stego |
-|---|---|
-| ![lenna-cover](assets/lenna.bmp) | ![lenna-stego](outputs/stego2.bmp) |
-| ![lenna-cover](assets/man.bmp) | ![lenna-stego](outputs/stego.bmp) |
-| ![lenna-cover](assets/pepper.bmp) | ![lenna-stego](outputs/stego3.bmp) |
+| Cover | Stego | PSNR | SSIM|
+|---|---|---|---|
+| ![lenna-cover](assets/lenna.bmp) | ![lenna-stego](outputs/stego2.bmp) | 73.80361845471792 | 0.9999518206752678|
+| ![lenna-cover](assets/man.bmp) | ![lenna-stego](outputs/stego.bmp) | 80.58434059598379 | 0.9999988523927771 |
+| ![lenna-cover](assets/pepper.bmp) | ![lenna-stego](outputs/stego3.bmp) | 76.80170347669058 | 0.9999982951594725 |
+ 
