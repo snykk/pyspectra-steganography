@@ -5,7 +5,7 @@ class PySpectra(object):
     def __init__(self):
         pass
 
-    def _lsbEmbed(self, image=np.array([]), message="") -> np.ndarray:
+    def _lsbEmbed(self, image: np.ndarray, message: str) -> np.ndarray:
         """
         Embeds a message into the least significant bit of each pixel in a grayscale image.
         
@@ -44,7 +44,7 @@ class PySpectra(object):
         return stego_image
 
 
-    def _getLSB(self, image=np.array([])) -> str:
+    def _getLSB(self, image: np.ndarray) -> str:
         """
         Retrieves the least significant bit of each pixel in an image.
         
@@ -69,7 +69,7 @@ class PySpectra(object):
         return lsbMessage
 
 
-    def _spreading(self, message="", scalar=2) -> str:
+    def _spreading(self, message: str, scalar: int) -> str:
         """
         Spreads a binary message by duplicating each bit by a scalar value.
         
@@ -84,6 +84,10 @@ class PySpectra(object):
         the binary message, duplicates the bit 'scalar' times, creating a spreaded binary message where each original bit is repeated 'scalar' times.
         """
 
+        # scalar value must be greather than zero
+        if (scalar < 1):
+            raise pyspectra_exception.PySpectraException(message="Scalar value must be greather than zero")
+
         # Converts the input message to binary representation
         message_bin = "".join(format(ord(i), '08b') for i in message)
         spreaded_message = ""
@@ -95,7 +99,7 @@ class PySpectra(object):
         return spreaded_message
     
 
-    def _deSpreading(self, message="", scalar=2) -> str:
+    def _deSpreading(self, message: str, scalar: int) -> str:
         """
         De-spreads a binary message by extracting original bits from spreaded pairs.
         
@@ -127,7 +131,7 @@ class PySpectra(object):
         return original_message
     
 
-    def _generateSeed(self, key="") -> int:
+    def _generateSeed(self, key: str) -> int:
         """
         Generates a seed for pseudo-random number generation based on the key.
         
@@ -163,7 +167,7 @@ class PySpectra(object):
         return int(bin_left, 2)
 
 
-    def _generatePseudoNoise(self, seed=0, length=2) -> str:
+    def _generatePseudoNoise(self, seed: int, length: int) -> str:
         """
         Generates pseudo-random noise based on a seed using a Linear Congruential Generator (LCG).
         
@@ -181,7 +185,7 @@ class PySpectra(object):
         """
 
         # formula LCG -> Xn+1 = (a . Xn + c) mod m
-        # let's say a = 27, c = 7, m = 21
+        # let's say a = 7, c = 1, m = 32
         
         # Constants for the Linear Congruential Generator (LCG)
         a = 7
@@ -199,7 +203,7 @@ class PySpectra(object):
         return result        
 
 
-    def _modulation(self, message="", pseudo_noise="") -> str:
+    def _modulation(self, message:str, pseudo_noise: str) -> str:
         """
         Modulates a message with pseudo-random noise using XOR operation.
         
@@ -236,7 +240,7 @@ class PySpectra(object):
 
 
 
-    def _spreadSpectrumEmbed(self, message="", key="", scalar=2) -> str:
+    def _spreadSpectrumEmbed(self, message: str, key: str, scalar: int) -> str:
         """
         Embeds a message using Spread Spectrum technique.
         
@@ -276,7 +280,7 @@ class PySpectra(object):
 
 
 
-    def _spreadSpectrumExtract(self, modulated_message="", key="", scalar=2) -> str:
+    def _spreadSpectrumExtract(self, modulated_message: str, key: str, scalar: int) -> str:
         """
         Extracts an embedded message using Spread Spectrum technique.
         
@@ -307,7 +311,7 @@ class PySpectra(object):
 
     
 
-    def _fromBinToText(self, bin_string="") -> str:
+    def _fromBinToText(self, bin_string: str) -> str:
         """
         Converts a binary string to its equivalent text representation.
         
@@ -333,7 +337,7 @@ class PySpectra(object):
         return text
     
 
-    def _getPattern(self, lsbData="") -> tuple[str, str, str]:
+    def _getPattern(self, lsbData: str) -> tuple[str, str, str]:
         """
         Extracts specific patterns from LSB data.
         
@@ -358,7 +362,7 @@ class PySpectra(object):
 
     
 
-    def embedding(self, image=np.array([]), message="", key="", scalar=2) -> np.ndarray:
+    def embedding(self, image: np.ndarray, message: str, key: str, scalar: int) -> np.ndarray:
         """
         Embeds a message into an image using Spread Spectrum and LSB techniques.
         
@@ -396,7 +400,7 @@ class PySpectra(object):
 
         return embedded_image
     
-    def extract(self, image=np.array([]), key="") -> str:
+    def extract(self, image: np.ndarray, key: str) -> str:
         """
         Extracts a message from an image using Spread Spectrum and LSB extraction methods.
         

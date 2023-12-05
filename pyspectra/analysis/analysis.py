@@ -3,7 +3,7 @@ import cv2
 from skimage.metrics import structural_similarity as ssim
 
 class Analysis(object):
-    def psnrAnalysis(self, image1=np.array([]), image2=np.array([])) -> np.float64:
+    def psnrAnalysis(self, image1: np.ndarray, image2: np.ndarray) -> np.float64:
         """
         Calculates the Peak Signal-to-Noise Ratio (PSNR) between two images.
         
@@ -39,7 +39,7 @@ class Analysis(object):
         psnr = 20 * np.log10(max_pixel) - 10 * np.log10(mse)
         return psnr
     
-    def ssimAnalysis(self, image1=np.array([]), image2=np.array([])) -> np.float64:
+    def ssimAnalysis(self, image1: np.ndarray, image2: np.ndarray) -> np.float64:
         """
         Calculates the Structural Similarity Index (SSIM) between two images.
         

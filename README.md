@@ -31,7 +31,7 @@ This Python-based steganography tool offers functionalities to embed secret mess
 1. Clone the repository:
 
    ```sh 
-   git clone https://github.com/snykk/spread-spectrum-lsb-steganography.git
+   git clone https://github.com/snykk/pyspectra-steganography.git
    ```
 2. Install the dependecies:
     ```sh

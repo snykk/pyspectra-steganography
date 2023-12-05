@@ -9,7 +9,7 @@ def main():
         if mode == "embed":
             image_name = input("Enter cover image: ")
             key = input("Enter the key: ")
-            scalar = int(input("Enter scalar value [0-255]: "))
+            scalar = int(input("Enter scalar value [1-255]: "))
             message = input("Enter the message: ")
             output_name = input("Enter the name of output image: ")
 
